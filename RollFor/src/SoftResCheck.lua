@@ -24,7 +24,7 @@ function M.new( softres, group_roster, name_matcher, ace_timer, absent_softres, 
 
   local function show( players )
     local p = function( text ) m.pretty_print( text, colors.orange ) end
-    p( "Players who did not soft-res:" )
+    SendChatMessage("Players who did not soft-res:", "RAID_WARNING")
 
     local buffer = ""
 
@@ -40,7 +40,7 @@ function M.new( softres, group_roster, name_matcher, ace_timer, absent_softres, 
       local next = grouped_player and m.colorize_player_by_class( grouped_player.name, grouped_player.class ) or player_name
 
       if string.len( buffer .. separator .. next ) > 255 then
-        p( buffer )
+        SendChatMessage(buffer, "RAID_WARNING")
         buffer = next
       else
         buffer = buffer .. separator .. next
@@ -48,7 +48,7 @@ function M.new( softres, group_roster, name_matcher, ace_timer, absent_softres, 
     end
 
     if buffer ~= "" then
-      p( buffer )
+        SendChatMessage(buffer, "RAID_WARNING")
     end
   end
 
