@@ -1,6 +1,8 @@
 RollFor = RollFor or {}
 local m = RollFor
 
+RollForRaidId = ""
+
 if m.SoftResGui then return end
 
 local M                = {}
@@ -66,7 +68,7 @@ local function create_frame( api, on_import, on_clear, on_cancel, on_dirty )
   scroll_child:SetHeight( 2 )
   scroll_child:SetWidth( 2 )
 
-  local editbox = api().CreateFrame( "EditBox", nil, scroll_child )
+  local editbox = api().CreateFrame( "EditBox", "RollForImportEditBox", scroll_child )
   editbox:SetPoint( "TOPLEFT", 0, 0 )
   editbox:SetHeight( 50 )
   editbox:SetWidth( 50 )
@@ -197,6 +199,12 @@ function M.new( api, import_encoded_softres_data, softres_check, softres, clear_
   local frame
 
   local function on_import( close_window_fn )
+    local raid_id =  RollForImportEditBox:GetText()
+    if string.len( raid_id ) == 6 then
+      RollForRaidId = raid_id
+      edit_box_text = UnitXP("clientRead", "http://ivanovlk.ddns.net:8383/api/"..raid_id);
+    end
+    
     import_encoded_softres_data( edit_box_text, function()
       local result = softres_check.check_softres()
 
@@ -215,12 +223,13 @@ function M.new( api, import_encoded_softres_data, softres_check, softres, clear_
     dirty = false
 
     if frame then
-      frame.editbox:SetText( "" )
+      frame.editbox:SetText( edit_box_text or "" )
       frame.editbox:SetFocus()
     end
 
     clear_data()
     reset_loot_announcements()
+    RollForImportEditBox:SetText( RollForRaidId )
   end
 
   local function on_cancel()
