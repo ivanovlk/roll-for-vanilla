@@ -2,6 +2,7 @@ RollFor = RollFor or {}
 local m = RollFor
 
 RollForRaidId = ""
+RollForRaidURL = ""
 
 if m.SoftResGui then return end
 
@@ -202,6 +203,7 @@ function M.new( api, import_encoded_softres_data, softres_check, softres, clear_
     local raid_id =  RollForImportEditBox:GetText()
     if string.len( raid_id ) == 6 then
       RollForRaidId = raid_id
+      RollForRaidURL = "https://raidres.fly.dev/res/"..raid_id
       edit_box_text = UnitXP("clientRead", "http://ivanovlk.ddns.net:8383/api/"..raid_id);
     end
     
