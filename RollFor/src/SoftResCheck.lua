@@ -50,6 +50,9 @@ function M.new( softres, group_roster, name_matcher, ace_timer, absent_softres, 
     if buffer ~= "" then
         SendChatMessage(buffer, "RAID_WARNING")
     end
+    if RollForRaidURL ~= "" then
+        SendChatMessage(RollForRaidURL, "RAID_WARNING")
+    end
   end
 
   local function show_who_is_not_softressing( silent )
