@@ -204,7 +204,7 @@ function M.new( api, import_encoded_softres_data, softres_check, softres, clear_
     if string.len( raid_id ) == 6 then
       RollForRaidId = raid_id
       RollForRaidURL = "https://raidres.fly.dev/res/"..raid_id
-      edit_box_text = UnitXP("clientRead", "http://ivanovlk.ddns.net:8383/api/"..raid_id);
+      edit_box_text = UnitXP("clientRead", "https://raidres-parser-h7d3dve3d6f2ayaj.westeurope-01.azurewebsites.net/api/"..raid_id);
     end
     
     import_encoded_softres_data( edit_box_text, function()
