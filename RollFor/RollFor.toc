@@ -4,7 +4,7 @@
 ## Version: 4.8.1
 ## Notes: An automated item roller with soft ressing support via raidres.fly.dev.
 ## SavedVariables: RollForDb
-## SavedVariablesPerCharacter: RollForCharDb
+## SavedVariablesPerCharacter: RollForCharDb, RollForRaidId
 
 libs\vanilla\LibStub\LibStub.lua
 libs\vanilla\Libs.xml
